@@ -21,3 +21,76 @@ class Word:
 
     def is_complete(self):
         return "_" not in self.correct_guesses
+
+class Hangman:
+    stages = [
+        """
+           ----
+           |  |
+           |
+           |
+           |
+           |
+        """,
+        """
+           ----
+           |  |
+           |  O
+           |
+           |
+           |
+        """,
+        """
+           ----
+           |  |
+           |  O
+           |  |
+           |
+           |
+        """,
+        """
+           ----
+           |  |
+           |  O
+           | /|
+           |
+           |
+        """,
+        """
+           ----
+           |  |
+           |  O
+           | /|\\
+           |
+           |
+        """,
+        """
+           ----
+           |  |
+           |  O
+           | /|\\
+           | /
+           |
+        """,
+        """
+           ----
+           |  |
+           |  O
+           | /|\\
+           | / \\
+        """
+    ]
+
+    def __init__(self):
+        self.wrong_guesses = 0
+
+    def draw(self):
+        print(self.stages[self.wrong_guesses])
+
+    def increment_wrong_guesses(self):
+        self.wrong_guesses += 1
+        if self.wrong_guesses >= len(self.stages) - 1:
+            print("Game Over! The man has been hung.")
+            return True
+        return False
+
