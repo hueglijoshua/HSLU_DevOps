@@ -95,9 +95,18 @@ class Hangman:
         return False
 
 class Game:
-    def __init__(self, word):
-        self.word = Word(word)
+    def __init__(self):
+        # The word is entered by the user at the start of the game
+        self.word = self.get_word_from_player()
         self.hangman = Hangman()
+
+    def get_word_from_player(self):
+        word = input("Enter the word for the game (Player 1): ").strip()
+        # Make sure the word is non-empty and consists of letters only
+        while not word.isalpha() or len(word) == 0:
+            print("Please enter a valid word (letters only).")
+            word = input("Enter the word for the game (Player 1): ").strip()
+        return word
 
     def play(self):
         print("Welcome to Hangman!")
@@ -119,5 +128,5 @@ class Game:
                 break
 
 # Usage
-game = Game("Python")  # Replace "Python" with any word you like
+game = Game()  
 game.play()
