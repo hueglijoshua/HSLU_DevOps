@@ -94,3 +94,26 @@ class Hangman:
             return True
         return False
 
+class Game:
+    def __init__(self, word):
+        self.word = Word(word)
+        self.hangman = Hangman()
+
+    def play(self):
+        print("Welcome to Hangman!")
+        while True:
+            print("\nCurrent word:", self.word.display_word())
+            print("Missed letters:", " ".join(sorted(self.word.guessed_letters - set(self.word.correct_guesses))))
+            self.hangman.draw()
+            letter = input("Guess a letter: ").lower()
+
+            if len(letter) != 1 or not letter.isalpha():
+                print("Please enter a single alphabetic character.")
+                continue
+
+            if not self.word.guess_letter(letter):
+                if self.hangman.increment_wrong_guesses():
+                    break
+            elif self.word.is_complete():
+                print("Congratulations! You've guessed the word:", self.word.word)
+                break
