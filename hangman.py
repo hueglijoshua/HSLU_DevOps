@@ -117,3 +117,7 @@ class Game:
             elif self.word.is_complete():
                 print("Congratulations! You've guessed the word:", self.word.word)
                 break
+
+# Usage
+game = Game("Python")  # Replace "Python" with any word you like
+game.play()
