@@ -22,6 +22,7 @@ class Word:
     def is_complete(self):
         return "_" not in self.correct_guesses
 
+
 class Hangman:
     stages = [
         """
@@ -94,10 +95,12 @@ class Hangman:
             return True
         return False
 
+
 class Game:
     def __init__(self):
         # The word is entered by the user at the start of the game
         self.word = self.get_word_from_player()
+        self.word = Word(self.word) 
         self.hangman = Hangman()
 
     def get_word_from_player(self):
@@ -127,6 +130,7 @@ class Game:
                 print("Congratulations! You've guessed the word:", self.word.word)
                 break
 
+
 # Usage
-game = Game()  
+game = Game()  # Now, the word is entered at the start
 game.play()
